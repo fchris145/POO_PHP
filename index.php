@@ -1,7 +1,5 @@
 <?php
-require('personnel.php');
-require('Fonctionnaire.php');
-require('Professeur.php');
+require('Utilisateur.php');
 
 // $utilisateur1 = new Utilisateur('Jean', 'Paul', 30, 'jean2000@gmail.com');
 // $utilisateur2 = new Utilisateur('Naoussi', 'Fotso', 24, 'naoussif@gmail.com');
@@ -29,9 +27,24 @@ echo $auteur1->getNote();
 echo '<br>';
 echo $auteur1->getAge(); */
 
-$professeur1  = new Professeur('Junior', 25, 54);
+/* $professeur1  = new Professeur('Junior', 25, 54);
 echo $professeur1->getNom(). '<br>';
 echo $professeur1->calculerSalaire(). '<br>';
-echo $professeur1->passerExamen();
+echo $professeur1->passerExamen(); */
 
+$utilisateur1 = new Utilisateur('junior', 'chrys', 24, 'Jnaoussi2@gmail.com');
+$utilisateur1->setAge(23);
+$utilisateur1->listerAttributs();
+$utilisateur1->methodeInvente('PHP', 'Programmation');
+$utilisateur1->attributFaux = 'jean';
+
+if (isset($utilisateur1->m_faux)) {
+    echo ' L\'attribut existe';
+} else {
+}
+
+unset($utilisateur1->fonction); //cette fonction permet de detruire un attribut
+echo $utilisateur1->fonction;
+
+echo $utilisateur1;
 ?>

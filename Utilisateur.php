@@ -5,29 +5,60 @@ class Utilisateur {
     protected $m_prenom;
     protected $m_age;
     protected $m_email;
+    public  $fonction;
 
     
-    //Methodes
-    /* public function degreImplication() {
-        if($this->getNote() >= self::NREF_HAUTE){
-            echo "La contribution de cet utilisateur est excellente";
-        }
-        elseif($this->getNote() >= self::NREF_BASSE){
-            echo "La contribution de cet utilisateur est moyenne";
-        }
-        else {
-            echo "La contribution de cet utilisateur est insuffisante";
-        }
-    } */
+    //Methodes Magique
     public function __construct($nom, $prenom, $age, $email) {
+        //est appele lorsque un objet de type utilisateur est appele
         $this->setNom($nom);
         $this->setPrenom($prenom);
         $this->setAge($age);
         $this->setEmail($email);
+    }
+    public function __call($method, $param) { 
+        //est appelee si un utilisateur tente d'acceder a une methode inexistante ou
+        //inacessible
+        echo 'La methode ' .$method. ' n\' est pas accesssible ou n\'existe pas <br>';
+        echo 'Arguments: ' .implode(', ', $param). '<br>';
+    }
+    public function __get($attribut) {
+        //est appele si un utilisateur tente d'acceder a un attribut inexistant ou
+        // inacessible
+        echo 'L\'attribut ' .$attribut. ' auquel vous tenter d\'acceder est inaccessible 
+        ou n\'existe pas <br>';
 
+    }
+    public function __set($attribut, $valeur) {
+        //est appele si un utilisateur tente de modifier un attribut inexistant ou
+        // inacessible
+        echo 'Impossible de mettre a jour l\'attribut ' .$attribut. ' avec la valeur '
+        .$valeur. ', attribut non accessible ou inexistant <br>' ;
+    }
+    public function __isset($attribut) {
+        //est appele lorsque la fonction isset() est appele sur des attributs inexistant
+        //ou inaccessible
+        echo 'L\'attribut ' .$attribut. ' n\'existe pas ou est inaccessible <br>';
+    }
+    public function __unset($attribut) {
+        //est appele lorsque la fonction unset() est appele sur des attributs inexistant
+        //ou inaccessible
+        echo 'L\'attribut ' .$attribut. ' que vous voulez detruire n\'existe pas ou 
+        est inaccessible <br>';
+    }
+    public function __toString() {
+        // est appele lorsque l'on tente d'utiliser un objet comme etant une chaine
+        // de caractere
+        return 'L\'objet dont le nom est ' .$this->m_nom. ' est un objet et nom 
+        une chaine de caractere';
     }
     
     //Implementation de fonctions pour modifier les valeurs des attributs de notre classe
+    public function listerAttributs() {
+        foreach ($this as $attribut => $valeur) {
+            echo $attribut .' => '. $valeur .'<br>'; 
+        }
+    }
     public function seConnecter(){
         echo 'je suis un utillisateur de votre application, je peux donc me connecter';
     }
