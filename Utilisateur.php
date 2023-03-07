@@ -50,7 +50,12 @@ class Utilisateur {
         // est appele lorsque l'on tente d'utiliser un objet comme etant une chaine
         // de caractere
         return 'L\'objet dont le nom est ' .$this->m_nom. ' est un objet et nom 
-        une chaine de caractere';
+        une chaine de caractere <br>';
+    }
+    public function __invoke($arg) {
+        //est appele lorsque l'on essaye d'utiliser un objet comme une fonction
+        echo "Vous etes entrain d'utiliser un objet comme une fonction et vous 
+        avez utilise comme argument " .$arg. "<br>";
     }
     
     //Implementation de fonctions pour modifier les valeurs des attributs de notre classe
